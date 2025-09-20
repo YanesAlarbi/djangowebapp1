@@ -1,7 +1,9 @@
  services:
       - type: web
+        plan: free
         name: djangowebapp1
-        env: python
+
+        runtime: python
         buildCommand: "pip install -r requirements.txt"
         startCommand: "gunicorn djangowebapp1.wsgi:application --bind 0.0.0.0:$PORT"
         envVars:
