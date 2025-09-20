@@ -1,0 +1,19 @@
+ services:
+      - type: web
+        name: djangowebapp1
+        env: python
+        buildCommand: "pip install -r requirements.txt"
+        startCommand: "gunicorn djangowebapp1.wsgi:application --bind 0.0.0.0:$PORT"
+        envVars:
+          - key: DATABASE_URL # This can be used if you prefer a single URL string for Neon
+            value: "postgresql://$(PGUSER):$(PGPASSWORD)@$(PGHOST)/$(PGDATABASE)"
+          # Or, pass individual Neon credentials as separate environment variables
+          - key: PGHOST
+            sync: false # Set to false if you are manually entering this in Render dashboard
+          - key: PGDATABASE
+            sync: false
+          - key: PGUSER
+            sync: false
+          - key: PGPASSWORD
+            sync: false
+        # Add other settings like health checks, scaling, etc.

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="2">
+<thead>
+  <tr>
+    <th>id</th>
+     <th>first name</th>
+     <th>last name</th>
+     <th>joined date</th>
+  </tr>
+</thead>
+<tbody>
+
+ {% for x in mymembers %}
+  <tr>
+    <td>{{x.id}}</td>
+    <td>{{x.fname}}</td>
+    <td>{{x.lname}}</td>
+    <td>{{x.join_date}}</td>
+  </tr>
+   {% endfor %}
+
+</tbody>
+
+
+
+</table>
+
+
+
+{{list_names}}
+
+<table>
+    <thead>
+    <tr>
+        <th>first name</th>
+        <th>joined date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for y in list_names %}
+<!--     {% for z in y %}-->
+    <tr>
+        <td>{{y}}</td>
+        <td>####</td>
+    </tr>
+<!--    {% endfor %}-->
+    {% endfor %}
+    </tbody>
+
+
+
+
+</table>
+ {{filtered_data}}
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+    {%for item in filtered_data %}
+    <tr>
+        <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+<label>filter on last name and id</label>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+    {%for item in filtered_data2 %}
+    <tr>
+        <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<label>filter on more than firstname with or </label>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+    {%for item in filtered_multiple %}
+    <tr>
+        <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<p>field lookup startswith </p>
+<ul>
+{%for item in filedlookup_data %}
+<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>
+    {%empty%}
+    <li>no members</li>
+
+{%endfor%}
+</ul>
+
+{{lookup_for_contains}}
+<p>field lookup contains </p>
+<ul>
+{%for item in lookup_for_contains %}
+<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>
+    {%empty%}
+    <li>no members</li>
+
+{%endfor%}
+</ul>
+<br/>
+
+<p>field lookup icontains </p>
+{{lookup_for_icontains}}
+<ul>
+{%for item in lookup_for_icontains %}
+<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>
+    {%empty%}
+    <li>no members</li>
+
+{%endfor%}
+</ul>
+
+<p>this is field lookups of ends with</p>
+<br/>
+{{lookupfields_endswith}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lookupfields_endswith %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+lookupfields_iendswith
+
+<p>this is field lookups of iends with</p>
+<br/>
+{{lookupfields_iendswith}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lookupfields_iendswith %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+
+<p>this is field lookups of  exact</p>
+<br/>
+{{lf_exact}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_exact %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+
+<p>this is field lookups of  case insensitive exact</p>
+<br/>
+{{lf_iexact}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_iexact %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+*******************************
+lf_in
+
+
+<p>this is field lookups of  in</p>
+<br/>
+{{lf_in}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_in %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+**************************************************
+<p>this is field lookups of  lf_isnull</p>
+<br/>
+{{lf_isnull}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_isnull %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+lf_gt
+**************************************************
+<p>this is field lookups of  lf_gt</p>
+<br/>
+{{lf_gt}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_gt %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+
+lf_gte
+**************************************************
+<p>this is field lookups of  lf_gte</p>
+<br/>
+{{lf_gte}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_gte %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+<p>**************************************************</p>
+<p>this is field lookups of  lf_quarter</p>
+<br/>
+{{lf_quarter}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_quarter %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+
+<p>**************************************************</p>
+<p>this is field lookups of  lf_range</p>
+<br/>
+{{lf_range}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in lf_range %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+
+
+
+<!--<p>loop through object is not exist </p>-->
+<!--<ul>-->
+<!--{%for item in mymembers %}-->
+<!--<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>-->
+<!--    {%empty%}-->
+<!--    <li>no members</li>-->
+
+<!--{%endfor%}-->
+<!--    </ul>-->
+
+</body>
+</html>

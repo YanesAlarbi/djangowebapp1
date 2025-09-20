@@ -1,0 +1,97 @@
+
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<link rel="stylesheet" href="{% static 'myglobal.css' %}" ></link>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table border="2">
+<thead>
+  <tr>
+    <th>id</th>
+     <th>first name</th>
+     <th>last name</th>
+     <th>joined date</th>
+  </tr>
+</thead>
+<tbody>
+
+ {% for x in mymembers %}
+  <tr>
+    <td>{{x.id}}</td>
+    <td>{{x.fname}}</td>
+    <td>{{x.lname}}</td>
+    <td>{{x.join_date}}</td>
+  </tr>
+   {% endfor %}
+
+</tbody>
+</table>
+<br/>
+<p>************************* order by</p>
+<p>this is order by</p>
+<br/>
+{{orderbylist}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in orderbylist %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+</table>
+
+
+
+<br/>
+<p>************************* more one field order by</p>
+<p>this is more field order by</p>
+<br/>
+{{moreorderbylist}}
+<br/>
+<table border="2">
+    <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>last name</th>
+        <th>join date</th>
+    </tr>
+
+{% for item in moreorderbylist %}
+
+<tr>
+    <td>{{item.id}}</td>
+    <td>{{item.fname}}</td>
+    <td>{{item.lname}}</td>
+    <td>{{item.join_date}}</td>
+</tr>
+{%endfor%}
+
+</table>
+
+{% for x in fruits %}
+  <h1>{{ x }}</h1>
+{% endfor %}
+
+</body>
+</html>

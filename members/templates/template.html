@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruits</title>
+</head>
+<body>
+
+
+
+
+{% include "mymenu.html" with me="Tobias" sponsor="Jamal Khadour"%}
+ {#<h1>hi man  welcome to  everyone</h1>#}
+<p>
+    <h1>welcome to {#everyone#}</h1>
+{% comment "this example to practice django basics of comment" %}
+{% for x in fruits %}
+
+         <li {% if forloop.last %}
+             style="background-color:orange"  {%else%} style="background-color:purple"
+            {% endif  %}
+         >{{x}} {{forloop.revcounter0}}</li>
+     {%endfor%}
+{% endcomment %}
+</p>
+<p>forloop.revcounter0</p>
+ <ul>
+     {% for x in fruits %}
+
+         <li {% if forloop.last %}
+             style="background-color:orange"  {%else%} style="background-color:purple"
+            {% endif  %}
+         >{{x}} {{forloop.revcounter0}}</li>
+     {%endfor%}
+
+     </ul>
+<p>forloop.revcounter</p>
+ <ul>
+     {% for x in fruits %}
+
+         <li {% if forloop.last %}
+             style="background-color:blue"  {%else%} style="background-color:purple"
+            {% endif  %}
+         >{{x}} {{forloop.revcounter}}</li>
+     {%endfor%}
+
+     </ul>
+
+<p>forloop.last</p>
+ <ul>
+     {% for x in fruits %}
+
+         <li {% if forloop.last %}
+             style="background-color:blue"  {%else%} style="background-color:purple"
+            {% endif  %}
+         >{{x}} {{forloop.counter0}}</li>
+     {%endfor%}
+
+     </ul>
+
+<p>forloop.first</p>
+ <ul>
+     {% for x in fruits %}
+
+         <li {% if forloop.first %}
+             style="background-color:lightblue" {%elif forloop.last %}  style="background-color:purple" {%else%} style="background-color:blue"
+            {% endif  %}
+         >{{x}} {{forloop.counter0}}</li>
+     {%endfor%}
+
+     </ul>
+<p>forloop.counter0</p>
+
+     {% for x in fruits %}
+
+         <h3>{{x}} {{forloop.counter0}}</h3>
+
+     {%endfor%}
+<p>forloop.counter</p>
+
+     {% for x in fruits %}
+
+         <h3>{{x}} {{forloop.counter}}</h3>
+
+     {%endfor%}
+
+<p>loop through object is not exist </p>
+<ul>
+{%for item in myobject %}
+<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>
+    {%empty%}
+    <li>no members</li>
+
+{%endfor%}
+    </ul>
+
+<p>loop through empty object </p>
+<ul>
+{%for item in emptyobject %}
+<li><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</li>
+    {%empty%}
+    <li>no members</li>
+
+{%endfor%}
+    </ul>
+
+<p>loop through items from db</p>
+{%for item in mymembers %}
+<p><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</p>
+
+{%endfor%}
+
+<p>reversed order of loop through items from db</p>
+{%for item in mymembers reversed %}
+<p><label>{{item.id}}</label> ) {{item.fname}}  {{item.lname}} {{item.join_date}}</p>
+
+{%endfor%}
+<p>for loop </p>
+{% for x in cars %}
+
+         <h3>{{x.brand}}</h3>
+          <p>{{x.model}}</p>
+           <p>{{x.year}}</p>
+     {%endfor%}
+<ul>
+     {% for x in fruits %}
+
+         <h2>{{x}}</h2>
+
+     {%endfor%}
+</ul>
+
+
+ {% if fruits is not fruits2 %}
+    <h1>fruits,fruits2 are not identical</h1>
+   {%else%}
+   <h1>fruits,fruits2 are  identical </h1>
+    {%endif%}
+
+{% with var1=fruits var2=fruits %}
+{% if var1 is var2%}
+<h3>var1 and var2 are identical</h3>
+{%else%}
+<h3>var1 and var2 are not identical</h3>
+{%endif%}
+
+{%endwith%}
+ {% if fruits is fruits2 %}
+    <h1>they are identical</h1>
+   {%else%}
+   <h1>they are not identical </h1>
+    {%endif%}
+
+ {% if fruits == fruits2 %}
+    <h1>they are equal</h1>
+   {%else%}
+   <h1>they are not equal </h1>
+    {%endif%}
+
+ {% if 'Watermelon' not in fruits %}
+    <h1>Watermelon is not existed</h1>
+   {%else%}
+   <h1>it's existed </h1>
+    {%endif%}
+
+   {% if average >= 94 and average <= 99 or amount >= 3.87 %}
+      <h1>your average is very excellent keep going {{average}}</h1>
+    {% elif average >= 86  and average <= 94 or average >= 3.76 %}
+      <h1>your average is excellent keep going {{average}} </h1>
+    {% else %}
+      <h1>your average more than 87 {{average}} </h1>
+    {% endif %}
+
+   {% if 'Banana' in fruits %}
+    <h1>banana is existed</h1>
+   {%else%}
+   <h1>not existed </h1>
+    {%endif%}
+
+
+{% autoescape off %}
+   <h2>{{heading}}</h2>
+{%endautoescape%}
+
+{% filter upper %}
+   <h2>greeting hi welcome</h2>
+{%endfilter%}
+
+{% comment "optional heading" %}
+
+   <h2>greeting hi welcome</h2>
+
+{%endcomment%}
+
+
+
+
+    {% if  greeting == 4 %}
+      <h1>hi welcome greeting this is if statement </h1>
+    {% elif greeting == 1 %}
+      <h1>django template tags </h1>
+    {% else %}
+      <h1>bye man </h1>
+    {% endif %}
+
+{% with lastname="Tobios" %}
+
+<label>Resetcycle tag</label>
+
+<h2>hello {{firstname}} {{lastname}} you are welcome in django world</h2>
+{% spaceless %}
+  {% for x in fruits %}
+     <h2 style="color:{% cycle 'green' 'blue' 'purple'  %}">{{x}}</h2>
+       {% if x == "Strawberries" %}
+         {%resetcycle%}
+       {%endif%}
+  {%endfor%}
+{% endspaceless %}
+{% endwith %}
+
+
+<ul>
+
+    {% for rec in mymembers %}
+      <li style="color:{% cycle 'red' 'blue' 'purple' 'pink' %}">{{rec.fname}} {{rec.lname}} {{rec.join_date}}</li>
+
+    {% endfor %}
+</ul>
+
+the first of
+<h1>{% firstof mymembers fruits firstname %}</h1>
+{% spaceless %}
+<p>if changed </p>
+<ul>
+     {% for x in mylist %}
+        {%ifchanged%}
+         <h2>{{x}}</h2>
+        {%endifchanged%}
+     {%endfor%}
+</ul>
+{% endspaceless %}
+
+<label>include keyword</label>
+{% include "all_members.html" %}
+
+<label>now tag</label>
+{% now "Y M D G:i:s"%}
+<label>lorem tag </label>
+{% lorem 2 p %}
+<p>In views.py you can see what the fruits variable looks like.</p>
+<label>Regroup tag</label>
+{% regroup cars by brand as newlist %}
+{{newlist}}
+{% for x in newlist %}
+<h2>{{x.grouper}}</h2>
+    {%for y in x.list %}
+     <p>{{y.model}}   {{y.year}}</p>
+    {%endfor%}
+
+
+{%endfor%}
+<label>template tag</label>
+{% templatetag openvariable %}
+ {{firstname}}
+ {% for x in fruits %}
+   {{x}}
+ {%endfor%}
+{% templatetag closevariable %}
+
+<label>verbatim tag</label>
+{% verbatim %}
+       {% for x in fruits %}
+           {{x}}
+       {%endfor%}
+{% endverbatim %}
+<br/>
+<label>with tag</label>
+{% with firstname="john meckafi" %}
+
+           {{firstname}}
+
+{% endwith %}
+
+{% include "footer.html" %}
+</body>
+</html>
