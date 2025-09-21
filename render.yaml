@@ -1,21 +1,40 @@
- services:
+databases:
+  - name: djangowebapp1
+    plan: free
+    databaseName: djangowebapp1
+    user: neondb_owner
+
+
+services:
       - type: web
         plan: free
         name: djangowebapp1
 
         runtime: python
-        buildCommand: "pip install -r requirements.txt"
-        startCommand: "gunicorn djangowebapp1.wsgi:application --bind 0.0.0.0:$PORT"
+        buildCommand: './build.sh'
+        #"pip install -r requirements.txt"
+        #startCommand: "gunicorn djangowebapp1.wsgi:application --bind 0.0.0.0:$PORT"
+        startCommand: 'python -m gunicorn djangowebapp1.asgi:application -k uvicorn.workers.UvicornWorker'
         envVars:
           - key: DATABASE_URL # This can be used if you prefer a single URL string for Neon
-            value: "postgresql://$(PGUSER):$(PGPASSWORD)@$(PGHOST)/$(PGDATABASE)"
+            fromDatabase:
+              name: djangowebapp1
+              property: connectionString
+
+
+          - key: SECRET_KEY
+            generateValue: true
+          - key: WEB_CONCURRENCY
+            value: 4
+
+            #value: "postgresql://$(PGUSER):$(PGPASSWORD)@$(PGHOST)/$(PGDATABASE)"
           # Or, pass individual Neon credentials as separate environment variables
-          - key: PGHOST
-            sync: false # Set to false if you are manually entering this in Render dashboard
-          - key: PGDATABASE
-            sync: false
-          - key: PGUSER
-            sync: false
-          - key: PGPASSWORD
-            sync: false
+         # - key: PGHOST
+          #  sync: false # Set to false if you are manually entering this in Render dashboard
+         # - key: PGDATABASE
+        #    sync: false
+        #  - key: PGUSER
+         #   sync: false
+        #  - key: PGPASSWORD
+         #   sync: false
         # Add other settings like health checks, scaling, etc.
